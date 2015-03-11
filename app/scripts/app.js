@@ -18,7 +18,11 @@ angular
     'ngTouch',
     'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,11 +35,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-      //    key: 'your api key',
-      v: '3.17',
-      libraries: 'weather,geometry,visualization'
-    });
   });
