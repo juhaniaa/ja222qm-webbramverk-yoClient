@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('ja222qmWebbramverkYoClientApp', [
+  .module('hunterApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

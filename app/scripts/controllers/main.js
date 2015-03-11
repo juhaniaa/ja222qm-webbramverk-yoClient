@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the ja222qmWebbramverkYoClientApp
  */
-angular.module('ja222qmWebbramverkYoClientApp')
+angular.module('hunterApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="ja222qmWebbramverkYoClientApp">
+  <body ng-app="hunterApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -33,7 +33,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">ja222qmWebbramverkYoClient</a>
+            <a class="navbar-brand" href="#/">hunterApp</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -43,6 +43,10 @@
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+              <li><a ng-href="#/">Sign Up</a></li>
+              <li><a ng-href="#/">Sign In</a></li>
+        		</ul>
           </div>
         </div>
       </div>
@@ -59,7 +63,7 @@
     </div>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
@@ -68,7 +72,7 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
-    </script>
+    </script>-->
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
