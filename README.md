@@ -1,5 +1,12 @@
-# ja222qm-webbramverk-yoClient
+# ja222qm-webbramverk-yo-client
 
-## Instructions to get started with the client application
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.11.1.
 
-1. Clone repository
+## Build & development
+
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+
+Running `grunt test` will run the unit tests with karma.
