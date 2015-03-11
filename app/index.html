@@ -21,7 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <div class="header" ng-controller="HeaderCtrl as user">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -43,9 +43,13 @@
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+            <ul class="nav navbar-nav navbar-right" data-ng-show="authentication">
               <li><a ng-href="#/">Sign Up</a></li>
               <li><a ng-href="#/">Sign In</a></li>
+        		</ul>
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication">
+              <li><a ng-href="#/">{{ loggedInUser }}</a></li>
+              <li><a ng-href="#/">Log out</a></li>
         		</ul>
           </div>
         </div>
@@ -94,6 +98,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/services/authentication.service.js"></script>
         <!-- endbuild -->
 </body>
 </html>
