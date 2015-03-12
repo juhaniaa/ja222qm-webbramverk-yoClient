@@ -35,9 +35,9 @@ angular
         controller: 'ExploreCtrl',
         controllerAs: 'events'
       })
-      .when('/explore/events', {
+      .when('/explore/hunters/:id/events', {
         templateUrl: 'views/eventList.html',
-        controller: 'ExploreEventsCtrl',
+        controller: 'ExploreByHunterCtrl',
         controllerAs: 'events'
       })
       .when('/explore/tags/:id/events', {
@@ -45,7 +45,7 @@ angular
         controller: 'ExploreByTagCtrl',
         controllerAs: 'events'
       })
-      .when('/explore/query', {
+      .when('/explore/events/query', {
         templateUrl: 'views/eventList.html',
         controller: 'ExploreByQueryCtrl',
         controllerAs: 'events'

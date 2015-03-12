@@ -9,7 +9,7 @@
  */
 angular
   .module('hunterApp')
-  .controller('ExploreCtrl', MainCtrl);
+  .controller('ExploreCtrl', ExploreCtrl);
 
 ExploreCtrl.$inject = ['$scope', 'HaAuthService', 'HaEventService', 'HaEventsMapService'];
 
@@ -17,15 +17,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService) {
 
   var vm = this;
 
-  vm.awesomeThings = [
-    'HTML5 Boilerplate',
-    'AngularJS',
-    'Karma'
-  ];
-
   $scope.map = eventsMapService.map;
-
-  vm.authentication = authService.authentication;
 
   var eventsPromise = eventService.getAllEvents();
   eventsPromise

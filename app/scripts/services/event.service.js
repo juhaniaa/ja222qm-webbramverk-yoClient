@@ -12,7 +12,8 @@ function HaEventService(trophyApiService){
     getEvent          : getEvent,
     getAllEvents      : getAllEvents,
     getEventsByTag    : getEventsByTag,
-    getEventsByHunter : getEventsByHunter
+    getEventsByHunter : getEventsByHunter,
+    getEventsByQuery  : getEventsByQuery
   };
 
   function getEvent(resId) {
@@ -29,5 +30,9 @@ function HaEventService(trophyApiService){
 
   function getEventsByHunter(filterId) {
     return trophyApiService.getCollBySingle('events', 'hunters', filterId);
+  }
+
+  function getEventsByQuery(query) {
+    return trophyApiService.getCollByQuery('events', query);
   }
 }

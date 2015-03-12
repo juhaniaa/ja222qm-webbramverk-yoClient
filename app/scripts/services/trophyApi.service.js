@@ -13,7 +13,8 @@ function HaTrophyApiService($http){
   return {
     getSingle       : getSingle,
     getCollection   : getCollection,
-    getCollBySingle : getCollBySingle
+    getCollBySingle : getCollBySingle,
+    getCollByQuery  : getCollByQuery
   };
 
   // Single ex api/events/1
@@ -91,6 +92,32 @@ function HaTrophyApiService($http){
     }
 
     function getCollBySingleFailed(err) {
+      console.log('Error occured ' + err.data);
+    }
+  }
+
+  // Collection by query ex api/events/query?query=happy
+
+  function getCollByQuery(resName, query) { // ex query: "happy"
+    var req = {
+      method: 'Get',
+      url: apiUrl + resName + '/query?query=' + query,
+      headers: {
+        'Authorization': token,
+      },
+      params: {
+        'limit': '20'
+      }
+    };
+    return $http(req)
+      .then(getCollByQueryComplete)
+      .catch(getCollByQueryFailed);
+
+    function getCollByQueryComplete(res) {
+      return res.data;
+    }
+
+    function getCollByQueryFailed(err) {
       console.log('Error occured ' + err.data);
     }
   }
