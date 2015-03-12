@@ -8,6 +8,7 @@ angular
 HaTagService.$inject = ['HaTrophyApiService'];
 
 function HaTagService(trophyApiService){
+  var getAllTags;
   return {
     getAllTags : getAllTags
   };

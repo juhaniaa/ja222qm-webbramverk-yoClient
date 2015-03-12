@@ -7,6 +7,7 @@
  * # AboutCtrl
  * Controller of the ja222qmWebbramverkYoClientApp
  */
+ 
 angular.module('hunterApp')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [

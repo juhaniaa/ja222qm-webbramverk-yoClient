@@ -7,7 +7,9 @@ angular
 
 HaHunterService.$inject = ['HaTrophyApiService'];
 
+
 function HaHunterService(trophyApiService){
+  var getAllHunters;
   return {
     getAllHunters : getAllHunters
   };
