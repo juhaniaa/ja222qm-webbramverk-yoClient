@@ -18,15 +18,37 @@ angular
     'ngTouch',
     'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider, uiGmapGoogleMapApiProvider) {
+  .config(function ($routeProvider, uiGmapGoogleMapApiProvider, $locationProvider) {
     uiGmapGoogleMapApiProvider.configure({
       v: '3.17',
       libraries: 'weather,geometry,visualization'
     });
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        controllerAs: 'events'
+      })
+      .when('/explore', {
+        templateUrl: 'views/eventList.html',
+        controller: 'ExploreCtrl',
+        controllerAs: 'events'
+      })
+      .when('/explore/events', {
+        templateUrl: 'views/eventList.html',
+        controller: 'ExploreEventsCtrl',
+        controllerAs: 'events'
+      })
+      .when('/explore/tags/:id/events', {
+        templateUrl: 'views/eventList.html',
+        controller: 'ExploreByTagCtrl',
+        controllerAs: 'events'
+      })
+      .when('/explore/query', {
+        templateUrl: 'views/eventList.html',
+        controller: 'ExploreByQueryCtrl',
+        controllerAs: 'events'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -35,4 +57,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+      $locationProvider.html5Mode(true);
   });

@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <p class="lead">
+    <ul>
+      <li><a data-ng-href="/">All Events</a></li>
+      <li><a data-ng-href="/">All Tags</a></li>
+      <li><a data-ng-href="/">All Hunters</a></li>
+    </ul>
+  </p>
+</div>
+
+<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+<h3>Events</h3>
+<ul>
+  <li data-ng-repeat="event in events.eventList">
+    {{ event.description }}
+  </li>
+</ul>

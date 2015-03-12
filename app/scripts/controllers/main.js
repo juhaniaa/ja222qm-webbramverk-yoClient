@@ -11,9 +11,9 @@ angular
   .module('hunterApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$scope', 'HaAuthService', 'HaEventService', 'HaEventsMapService'];
+MainCtrl.$inject = ['$scope', 'HaAuthService'];
 
-function MainCtrl($scope, authService, eventService, eventsMapService) {
+function MainCtrl($scope, authService) {
 
   var vm = this;
 
@@ -23,15 +23,5 @@ function MainCtrl($scope, authService, eventService, eventsMapService) {
     'Karma'
   ];
 
-  $scope.map = eventsMapService.map;
-
   vm.authentication = authService.authentication;
-
-  var eventsPromise = eventService.getAllEvents();
-  eventsPromise
-    .then(function(data) {
-    vm.events = data;
-  }).catch(function(err) {
-    console.log('Error: ' + err);
-  });
 }
