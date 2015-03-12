@@ -3,9 +3,9 @@
 //service to manage tags with the help of trophyApiService
 angular
   .module('hunterApp')
-  .factory("HaTagService", HaTagService);
+  .factory('HaTagService', HaTagService);
 
-HaTagService.$inject = ["HaTrophyApiService"];
+HaTagService.$inject = ['HaTrophyApiService'];
 
 function HaTagService(trophyApiService){
   return {
@@ -13,6 +13,6 @@ function HaTagService(trophyApiService){
   };
 
   function getAllTags() {
-    return trophyApiService.getCollection("tags");
+    return trophyApiService.getCollection('tags');
   }
 }

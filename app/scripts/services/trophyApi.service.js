@@ -3,10 +3,13 @@
 //service to manage requests to trophyApi
 angular
   .module('hunterApp')
-  .factory("HaTrophyApiService", HaTrophyApiService);
+  .factory('HaTrophyApiService', HaTrophyApiService);
 
-function HaTrophyApiService(){
-  var apiUrl = "http://127.0.0.1:3000/api/";
+HaTrophyApiService.$inject = ['$http'];
+
+function HaTrophyApiService($http){
+  var apiUrl = 'http://127.0.0.1:3000/api/';
+  var token = 'Token token=3acff13b44739f59cc7b9f735f67fbb7';
   return {
     getSingle       : getSingle,
     getCollection   : getCollection,
@@ -16,11 +19,12 @@ function HaTrophyApiService(){
   // Single ex api/events/1
 
   function getSingle(resName, resId) { // ex resName:"events" resId:1
+    var getSingleComplete, getSingleFailed;
     var req = {
-      method: "Get",
-      url: apiUrl + resName + "/" + resId,
+      method: 'Get',
+      url: apiUrl + resName + '/' + resId,
       headers: {
-        'Authorization': Token token="3acff13b44739f59cc7b9f735f67fbb7",
+        'Authorization': token,
       },
       params: {
         'limit': '20'
@@ -35,7 +39,7 @@ function HaTrophyApiService(){
     }
 
     function getSingleFailed(err) {
-      console.log("Error occured " + err.data);
+      console.log('Error occured ' + err.data);
     }
   }
 
@@ -43,10 +47,10 @@ function HaTrophyApiService(){
 
   function getCollection(resName) { // ex resName:"events"
     var req = {
-      method: "Get",
+      method: 'Get',
       url: apiUrl + resName,
       headers: {
-        'Authorization': Token token="3acff13b44739f59cc7b9f735f67fbb7",
+        'Authorization': token,
       },
       params: {
         'limit': '20'
@@ -61,7 +65,7 @@ function HaTrophyApiService(){
     }
 
     function getCollectionFailed(err) {
-      console.log("Error occured " + err.data);
+      console.log('Error occured ' + err.data);
     }
   }
 
@@ -69,10 +73,10 @@ function HaTrophyApiService(){
 
   function getCollBySingle(resName, filterName, filterId) { // ex resName:"events" filterName:"tags" filterId:3
     var req = {
-      method: "Get",
-      url: apiUrl + filterName + "/" + filterId + "/" + resName,
+      method: 'Get',
+      url: apiUrl + filterName + '/' + filterId + '/' + resName,
       headers: {
-        'Authorization': Token token="3acff13b44739f59cc7b9f735f67fbb7",
+        'Authorization': token,
       },
       params: {
         'limit': '20'
@@ -87,7 +91,7 @@ function HaTrophyApiService(){
     }
 
     function getCollBySingleFailed(err) {
-      console.log("Error occured " + err.data);
+      console.log('Error occured ' + err.data);
     }
   }
 }

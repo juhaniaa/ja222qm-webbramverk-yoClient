@@ -3,9 +3,9 @@
 //service to manage hunters with the help of trophyApiService
 angular
   .module('hunterApp')
-  .factory("HaHunterService", HaHunterService);
+  .factory('HaHunterService', HaHunterService);
 
-HaHunterService.$inject = ["HaTrophyApiService"];
+HaHunterService.$inject = ['HaTrophyApiService'];
 
 function HaHunterService(trophyApiService){
   return {
@@ -13,6 +13,6 @@ function HaHunterService(trophyApiService){
   };
 
   function getAllHunters() {
-    return trophyApiService.getCollection("hunters");
+    return trophyApiService.getCollection('hunters');
   }
 }

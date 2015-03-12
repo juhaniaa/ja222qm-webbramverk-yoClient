@@ -5,10 +5,10 @@
 // get jwt token by api/auth
 angular
   .module('hunterApp')
-  .service("HAAuthService", HAAuthService);
+  .service('HaAuthService', HaAuthService);
 
-function HAAuthService(){
-  this.login = function(userName, userPassword) {
+function HaAuthService(){
+  this.login = function() {
 
   };
 

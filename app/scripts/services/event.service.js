@@ -3,9 +3,9 @@
 //service to manage events with the help of trophyApiService
 angular
   .module('hunterApp')
-  .factory("HaEventService", HaEventService);
+  .factory('HaEventService', HaEventService);
 
-HaEventService.$inject = ["HaTrophyApiService"];
+HaEventService.$inject = ['HaTrophyApiService'];
 
 function HaEventService(trophyApiService){
   return {
@@ -16,18 +16,18 @@ function HaEventService(trophyApiService){
   };
 
   function getEvent(resId) {
-    return trophyApiService.getSingle("events", resId);
+    return trophyApiService.getSingle('events', resId);
   }
 
   function getAllEvents() {
-    return trophyApiService.getCollection("events");
+    return trophyApiService.getCollection('events');
   }
 
   function getEventsByTag(filterId) {
-    return trophyApiService.getCollBySingle("events", "tags", filterId);
+    return trophyApiService.getCollBySingle('events', 'tags', filterId);
   }
 
   function getEventsByHunter(filterId) {
-    return trophyApiService.getCollBySingle("events", "hunters", filterId);
+    return trophyApiService.getCollBySingle('events', 'hunters', filterId);
   }
 }

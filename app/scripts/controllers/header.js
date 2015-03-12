@@ -14,10 +14,10 @@ angular
 // should this be userCtrl? Though it is only used for accessing user information in navigation
 // As is user logged in and get current user Name
 
-MainCtrl.$inject = ['$scope', 'HAAuthService'];
+HeaderCtrl.$inject = ['$scope', 'HaAuthService'];
 
-function HeaderCtrl($scope, HAAuthService) {
+function HeaderCtrl($scope, HaAuthService) {
 
-  $scope.authentication = HAAuthService.authentication;
-  $scope.loggedInUser = "Juhani";
+  $scope.authentication = HaAuthService.authentication;
+  $scope.loggedInUser = 'Juhani';
 }
