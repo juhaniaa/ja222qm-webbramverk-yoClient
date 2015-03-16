@@ -14,7 +14,8 @@ function HaTrophyApiService($http){
     getSingle       : getSingle,
     getCollection   : getCollection,
     getCollBySingle : getCollBySingle,
-    getCollByQuery  : getCollByQuery
+    getCollByQuery  : getCollByQuery,
+    postHunterAuth  : postHunterAuth
   };
 
   // Single ex api/events/1
@@ -98,7 +99,7 @@ function HaTrophyApiService($http){
 
   // Collection by query ex api/events/query?query=happy
 
-  function getCollByQuery(resName, query) { // ex query: "happy"
+  function getCollByQuery(resName, query) { // ex resName:"events"  query: "happy"
     var req = {
       method: 'Get',
       url: apiUrl + resName + '/query?query=' + query,
@@ -120,5 +121,20 @@ function HaTrophyApiService($http){
     function getCollByQueryFailed(err) {
       console.log('Error occured ' + err.data);
     }
+  }
+
+  // Post Authentication to get authToken api/auth
+
+  function postHunterAuth(email, password) { // ex email:"hunter1@test.se" password: "asd123"
+    var req = {
+      method: 'Post',
+      url: apiUrl + '/auth',
+      params: {
+        'email': email,
+        'password': password
+      }
+    };
+
+    return $http(req);    
   }
 }

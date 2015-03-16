@@ -22,9 +22,9 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService) {
   var eventsPromise = eventService.getAllEvents();
   eventsPromise
     .then(function(data) {
-    vm.eventList = data;
-    console.log(data);
-  }).catch(function(err) {
-    console.log('Error: ' + err);
-  });
+      vm.eventList = data;
+      console.log(data);
+    }).catch(function(err) {
+      console.log('Error: ' + err);
+    });
 }

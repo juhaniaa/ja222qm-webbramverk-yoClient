@@ -44,13 +44,13 @@
               <li><a ng-href="/about">About</a></li>
               <li><a ng-href="/explore">Explore</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-show="authentication">
-              <li><a ng-href="/">Sign Up</a></li>
-              <li><a ng-href="/">Sign In</a></li>
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="user.authentication">
+              <li><a ng-href="/account/signup">Sign Up</a></li>
+              <li><a ng-href="/account/signin">Sign In</a></li>
         		</ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication">
-              <li><a ng-href="/">{{ loggedInUser }}</a></li>
-              <li><a ng-href="/">Log out</a></li>
+            <ul class="nav navbar-nav navbar-right" data-ng-show="user.authentication">
+              <li><a ng-href="/account/profile">{{ user.loggedInUser }}</a></li>
+              <li><a ng-href="/account/signout">Log out</a></li>
         		</ul>
           </div>
         </div>
@@ -101,6 +101,10 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/header.js"></script>
         <script src="scripts/controllers/explore.js"></script>
+        <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/accountSignIn.js"></script>
+        <script src="scripts/controllers/accountSignOut.js"></script>
+        <script src="scripts/controllers/accountSignUp.js"></script>
         <script src="scripts/services/trophyApi.service.js"></script>
         <script src="scripts/services/auth.service.js"></script>
         <script src="scripts/services/event.service.js"></script>

@@ -16,8 +16,20 @@ angular
 
 HeaderCtrl.$inject = ['$scope', 'HaAuthService'];
 
-function HeaderCtrl($scope, HaAuthService) {
+function HeaderCtrl($scope, authService) {
 
-  $scope.authentication = HaAuthService.authentication;
-  $scope.loggedInUser = 'Juhani';
+  // this only gets called on page refresh? // TODO TRY with this stuff in other controller!!!!
+  // should be data-bound somehow... or is it just not updated correctly?
+
+  var vm = this;
+  vm.authentication = authService.user.logged; // temp for user not logged in
+  vm.loggedInUser = authService.user.name;
+
+  console.log(authService.user);
+  console.log(authService.user !== null);
+  // if(authService.user.name !== null){
+  //   var userName = authService.user.name;
+  //   vm.loggedInUser = userName;
+  //   vm.authentication = true;
+  // }
 }

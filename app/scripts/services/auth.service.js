@@ -3,16 +3,21 @@
 //Authentication service used to login/logout user
 //and access current user info/state
 // get jwt token by api/auth
+
 angular
   .module('hunterApp')
-  .service('HaAuthService', HaAuthService);
+  .factory('HaAuthService', HaAuthService);
 
-function HaAuthService(){
-  this.login = function() {
+HaAuthService.$inject = ['HaTrophyApiService'];
 
+function HaAuthService(trophyApiService){
+  var user = { name: null, token: null, logged: false };
+  return {
+    signIn  : signIn,
+    user    : user
   };
 
-  // this should go through trophyApiService
-
-  this.authentication = false;
+  function signIn(email, password) {
+    return trophyApiService.postHunterAuth(email, password);
+  }
 }

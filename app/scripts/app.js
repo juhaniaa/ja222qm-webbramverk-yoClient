@@ -50,6 +50,22 @@ angular
         controller: 'ExploreByQueryCtrl',
         controllerAs: 'events'
       })
+      .when('/account/signup', {
+        templateUrl: 'views/accountSignUp.html',
+        controller: 'AccountSignUpCtrl'
+      })
+      .when('/account/signin', {
+        templateUrl: 'views/accountSignIn.html',
+        controller: 'AccountSignInCtrl'
+      })
+      .when('/account/signout', {
+        templateUrl: 'views/main.html',
+        controller: 'AccountSignOutCtrl'
+      })
+      .when('/account/profile', {
+        templateUrl: 'views/accountProfile.html',
+        controller: 'AccountCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
