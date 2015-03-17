@@ -11,22 +11,22 @@
 angular.module('hunterApp')
   .controller('AccountSignInCtrl', AccountSignInCtrl);
 
-AccountSignInCtrl.$inject = ['$scope', 'HaAuthService'];
+AccountSignInCtrl.$inject = ['$scope', 'HaAuthService', '$location'];
 
-function AccountSignInCtrl($scope, authService) {
+function AccountSignInCtrl($scope, authService, $location) {
 
   var vm = this;
   var email = "hunter1@test.se";
   var password = "asd123";
 
-  vm.test = "hello";
+  // vm.mail = "";
+  // vm.password = "";
 
   // when user presses "Sign In"
   vm.signIn = function(){
-    console.log("User pressed sign in");
 
     // Try sign in to api
-    var userPromise = authService.signIn(email, password);
+    var userPromise = authService.signIn(vm.mail, vm.password);
     userPromise
       .then(function(data) {
         // If successfull
@@ -36,10 +36,10 @@ function AccountSignInCtrl($scope, authService) {
           authService.user.name = data.data.hunter_name;
           authService.user.id = data.data.hunter_id;
           authService.user.logged = true;
-          console.log("info might have been added to user service");
+          // then redirect user to profile or explore?
+          $location.path('/account/profile');
+
         }
-        // then redirect user to explore
-        console.log("now there should be a redirect");
         console.log(data);
       }).catch(function(err) {
         // Otherwise show error message

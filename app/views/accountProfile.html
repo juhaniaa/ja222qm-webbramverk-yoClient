@@ -1,12 +1,21 @@
+<div ng-controller="AccountCtrl as hunter">
 <div class="jumbotron">
   <p class="lead">
-    Hello mr x!
+    Hello mr {{ hunter.name }}!
   </p>
 </div>
+
+<h3>Events</h3>
+<ul>
+  <li data-ng-repeat="event in hunter.eventList">
+    {{ event.description }}
+  </li>
+</ul>
 
 <div class="row marketing">
   <h4>Hunter form</h4>
   <p>
     Do you want to edit your settings?
   </p>
+</div>
 </div>

@@ -11,17 +11,27 @@ angular
 HaAuthService.$inject = ['HaTrophyApiService'];
 
 function HaAuthService(trophyApiService){
-  var user = { name: null, token: null, logged: false };
+  var user = { name: null, token: null, id: null, logged: false };
   return {
     signIn  : signIn,
+    signOut : signOut,
     user    : user,
     logged  : logged,
     userName  : userName,
-    userToken : userToken
+    userToken : userToken,
+    userId    : userId
   };
 
   function signIn(email, password) {
     return trophyApiService.postHunterAuth(email, password);
+  }
+
+  function signOut() {
+    user.name = null;
+    user.token = null;
+    user.id = null;
+    user.logged = false;
+    return true;
   }
 
   function logged() {
@@ -34,5 +44,9 @@ function HaAuthService(trophyApiService){
 
   function userToken() {
     return user.token;
+  }
+
+  function userId() {
+    return user.id;
   }
 }

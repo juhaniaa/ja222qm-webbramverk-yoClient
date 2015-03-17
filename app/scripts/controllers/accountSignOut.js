@@ -16,4 +16,6 @@ AccountSignOutCtrl.$inject = ['$scope', 'HaAuthService'];
 function AccountSignOutCtrl($scope, authService) {
 
   // this will remove logged in users session and show main page
+  authService.signOut();
+
 }

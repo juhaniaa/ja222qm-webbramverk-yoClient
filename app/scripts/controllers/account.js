@@ -15,12 +15,13 @@ AccountCtrl.$inject = ['$scope', 'HaAuthService', 'HaEventService', 'HaEventsMap
 
 function AccountCtrl($scope, authService, eventService, eventsMapService) {
 
-  var someHunterId = 5; // this should be retrieved from the current user
   var vm = this;
+  vm.name = authService.userName(); // this should be retrieved from the current user
+  var hunterId = authService.userId();
 
   $scope.map = eventsMapService.map;
 
-  var eventsPromise = eventService.getEventsByHunter(someHunterId);
+  var eventsPromise = eventService.getEventsByHunter(hunterId);
   eventsPromise
     .then(function(data) {
     vm.eventList = data;
