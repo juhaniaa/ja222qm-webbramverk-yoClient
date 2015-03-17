@@ -16,12 +16,6 @@ MainCtrl.$inject = ['$scope', 'HaAuthService'];
 function MainCtrl($scope, authService) {
 
   var vm = this;
-
-  vm.awesomeThings = [
-    'HTML5 Boilerplate',
-    'AngularJS',
-    'Karma'
-  ];
-
-  vm.authentication = authService.authentication;
+  vm.name = authService.userName();
+  vm.logged = authService.logged();
 }

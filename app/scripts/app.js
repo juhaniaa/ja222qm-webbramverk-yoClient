@@ -23,7 +23,6 @@ angular
       v: '3.17',
       libraries: 'weather,geometry,visualization'
     });
-
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

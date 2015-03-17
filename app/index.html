@@ -22,37 +22,35 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="HeaderCtrl as user">
+    <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
-
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
             <a class="navbar-brand" href="/">hunterApp</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavUserCtrl as user">
             <ul class="nav navbar-nav">
               <li class="active"><a href="/">Home</a></li>
               <li><a ng-href="/about">About</a></li>
               <li><a ng-href="/explore">Explore</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-hide="user.authentication">
+            <ul class="nav navbar-nav navbar-right" data-ng-hide="user.logged">
               <li><a ng-href="/account/signup">Sign Up</a></li>
               <li><a ng-href="/account/signin">Sign In</a></li>
-        		</ul>
-            <ul class="nav navbar-nav navbar-right" data-ng-show="user.authentication">
-              <li><a ng-href="/account/profile">{{ user.loggedInUser }}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" data-ng-show="user.logged">
+              <li><a ng-href="/account/profile">{{ user.name }}</a></li>
               <li><a ng-href="/account/signout">Log out</a></li>
-        		</ul>
+            </ul>
           </div>
+
         </div>
       </div>
     </div>
@@ -99,7 +97,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/controllers/navUser.js"></script>
         <script src="scripts/controllers/explore.js"></script>
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/controllers/accountSignIn.js"></script>
