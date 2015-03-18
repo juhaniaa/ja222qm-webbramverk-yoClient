@@ -64,7 +64,8 @@ angular
       })
       .when('/account/profile', {
         templateUrl: 'views/accountProfile.html',
-        controller: 'AccountCtrl'
+        controller: 'AccountCtrl',
+        controllerAs: 'hunter'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

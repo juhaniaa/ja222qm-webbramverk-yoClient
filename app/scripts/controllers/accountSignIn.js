@@ -40,7 +40,6 @@ function AccountSignInCtrl($scope, authService, $location) {
           $location.path('/account/profile');
 
         }
-        console.log(data);
       }).catch(function(err) {
         // Otherwise show error message
         console.log('Error: ' + err.data.error);

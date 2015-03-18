@@ -12,15 +12,17 @@ function HaEventService(trophyApiService){
   var filter = { list: null, type: null };
 
   return {
-    getEvent            : getEvent,
-    getAllEvents        : getAllEvents,
-    getEventsByTag      : getEventsByTag,
-    getEventsByHunter   : getEventsByHunter,
-    getEventsByQuery    : getEventsByQuery,
-    setCurrentEventList : setCurrentEventList,
-    getCurrentEventList : getCurrentEventList,
-    setFilter           : setFilter,
-    getFilter           : getFilter
+    getEvent                : getEvent,
+    getAllEvents            : getAllEvents,
+    getEventsByTag          : getEventsByTag,
+    getEventsByHunter       : getEventsByHunter,
+    getEventsByQuery        : getEventsByQuery,
+    addEvent                : addEvent,
+    setCurrentEventList     : setCurrentEventList,
+    getCurrentEventList     : getCurrentEventList,
+    appendCurrentEventList  : appendCurrentEventList,
+    setFilter               : setFilter,
+    getFilter               : getFilter
   };
 
   function getEvent(resId) {
@@ -43,12 +45,20 @@ function HaEventService(trophyApiService){
     return trophyApiService.getCollByQuery('events', query);
   }
 
+  function addEvent(eventObj, authToken) {
+    return trophyApiService.addSingle('events', eventObj, authToken)
+  }
+
   function setCurrentEventList(newEventList) {
     eventList = newEventList
   }
 
   function getCurrentEventList() {
     return eventList;
+  }
+
+  function appendCurrentEventList(newEvent) {
+    eventList.push(newEvent);
   }
 
   function setFilter(newFilterList, type) {

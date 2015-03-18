@@ -67,10 +67,11 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     // get events by either hunter or tag depending on current List
     var filteredEventsPromise;
     var listType = eventService.getFilter().type;
+    
     if(listType === "hunters") {
       filteredEventsPromise = eventService.getEventsByHunter(filterId);
     } else if(listType === "tags") {
-      filteredEventsPromise = eventService.getEventsByHunter(filterId);
+      filteredEventsPromise = eventService.getEventsByTag(filterId);
     } else {
       console.log('Error: incorrect filter list')
     }
@@ -81,7 +82,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       })
       .catch(function(err) {
         console.log('Error: ' + err);
-      });      
+      });
   }
 
   vm.queryEvents = function() {
