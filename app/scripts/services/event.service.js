@@ -8,12 +8,18 @@ angular
 HaEventService.$inject = ['HaTrophyApiService'];
 
 function HaEventService(trophyApiService){
+  var eventList = null;
+  var filterList = null;
   return {
-    getEvent          : getEvent,
-    getAllEvents      : getAllEvents,
-    getEventsByTag    : getEventsByTag,
-    getEventsByHunter : getEventsByHunter,
-    getEventsByQuery  : getEventsByQuery
+    getEvent            : getEvent,
+    getAllEvents        : getAllEvents,
+    getEventsByTag      : getEventsByTag,
+    getEventsByHunter   : getEventsByHunter,
+    getEventsByQuery    : getEventsByQuery,
+    setCurrentEventList : setCurrentEventList,
+    getCurrentEventList : getCurrentEventList,
+    setFilterList       : setFilterList,
+    getFilterList       : getFilterList
   };
 
   function getEvent(resId) {
@@ -34,5 +40,21 @@ function HaEventService(trophyApiService){
 
   function getEventsByQuery(query) {
     return trophyApiService.getCollByQuery('events', query);
+  }
+
+  function setCurrentEventList(newEventList) {
+    eventList = newEventList
+  }
+
+  function getCurrentEventList() {
+    return eventList;
+  }
+
+  function setFilterList(newFilterList) {
+    filterList = newFilterList;
+  }
+
+  function getFilterList() {
+    return filterList;
   }
 }

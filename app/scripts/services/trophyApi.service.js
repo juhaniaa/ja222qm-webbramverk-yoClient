@@ -32,17 +32,7 @@ function HaTrophyApiService($http){
         'limit': '20'
       }
     };
-    return $http(req)
-      .then(getSingleComplete)
-      .catch(getSingleFailed);
-
-    function getSingleComplete(res) {
-      return res.data;
-    }
-
-    function getSingleFailed(err) {
-      console.log('Error occured ' + err.data);
-    }
+    return $http(req);
   }
 
   // Collection ex api/events
@@ -58,17 +48,7 @@ function HaTrophyApiService($http){
         'limit': '20'
       }
     };
-    return $http(req)
-      .then(getCollectionComplete)
-      .catch(getCollectionFailed);
-
-    function getCollectionComplete(res) {
-      return res.data;
-    }
-
-    function getCollectionFailed(err) {
-      console.log('Error occured ' + err.data);
-    }
+    return $http(req);
   }
 
   // Collection by single ex api/tags/3/events
@@ -84,17 +64,7 @@ function HaTrophyApiService($http){
         'limit': '20'
       }
     };
-    return $http(req)
-      .then(getCollBySingleComplete)
-      .catch(getCollBySingleFailed);
-
-    function getCollBySingleComplete(res) {
-      return res.data;
-    }
-
-    function getCollBySingleFailed(err) {
-      console.log('Error occured ' + err.data);
-    }
+    return $http(req);
   }
 
   // Collection by query ex api/events/query?query=happy
@@ -110,17 +80,7 @@ function HaTrophyApiService($http){
         'limit': '20'
       }
     };
-    return $http(req)
-      .then(getCollByQueryComplete)
-      .catch(getCollByQueryFailed);
-
-    function getCollByQueryComplete(res) {
-      return res.data;
-    }
-
-    function getCollByQueryFailed(err) {
-      console.log('Error occured ' + err.data);
-    }
+    return $http(req);
   }
 
   // Post Authentication to get authToken api/auth
@@ -135,6 +95,6 @@ function HaTrophyApiService($http){
       }
     };
 
-    return $http(req);    
+    return $http(req);
   }
 }

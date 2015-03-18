@@ -1,12 +1,19 @@
 <div class="jumbotron">
   <p class="lead">
     <ul>
-      <li><a data-ng-href="/explore">All Events</a></li>
-      <li><a data-ng-href="/">All Tags</a></li>
-      <li><a data-ng-href="/">All Hunters</a></li>
+      <button data-ng-click="events.allEvents()">Get all Events</button>
+      <button data-ng-click="events.allHunters()">Sort by Hunter</button>
+      <button data-ng-click="events.allTags()">Sort by Tag</button>
     </ul>
   </p>
 </div>
+
+<h3>Filter list</h3>
+<ul>
+  <li data-ng-repeat="filter in events.filterList">
+    {{ filter.name }}
+  </li>
+</ul>
 
 <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 
