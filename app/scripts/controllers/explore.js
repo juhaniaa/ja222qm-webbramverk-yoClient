@@ -81,7 +81,19 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       })
       .catch(function(err) {
         console.log('Error: ' + err);
-      }); 
+      });      
   }
 
+  vm.queryEvents = function() {
+    console.log(vm.eventQuery);
+    var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
+    eventsPromise
+      .then(function(data) {
+        eventService.setCurrentEventList(data.data);
+        console.log(data);
+      })
+      .catch(function(err) {
+        console.log('Error: ' + err);
+      });
+  }
 }

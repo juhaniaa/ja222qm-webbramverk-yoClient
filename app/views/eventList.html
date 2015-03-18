@@ -4,6 +4,8 @@
       <button data-ng-click="events.allEvents()">Get all Events</button>
       <button data-ng-click="events.allHunters()">Sort by Hunter</button>
       <button data-ng-click="events.allTags()">Sort by Tag</button>
+      <input type="text" data-ng-model="events.eventQuery" />
+      <button data-ng-click="events.queryEvents()">Search by description</button>
     </ul>
   </p>
 </div>
