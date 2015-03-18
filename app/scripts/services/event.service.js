@@ -9,7 +9,8 @@ HaEventService.$inject = ['HaTrophyApiService'];
 
 function HaEventService(trophyApiService){
   var eventList = null;
-  var filterList = null;
+  var filter = { list: null, type: null };
+
   return {
     getEvent            : getEvent,
     getAllEvents        : getAllEvents,
@@ -18,8 +19,8 @@ function HaEventService(trophyApiService){
     getEventsByQuery    : getEventsByQuery,
     setCurrentEventList : setCurrentEventList,
     getCurrentEventList : getCurrentEventList,
-    setFilterList       : setFilterList,
-    getFilterList       : getFilterList
+    setFilter           : setFilter,
+    getFilter           : getFilter
   };
 
   function getEvent(resId) {
@@ -50,11 +51,12 @@ function HaEventService(trophyApiService){
     return eventList;
   }
 
-  function setFilterList(newFilterList) {
-    filterList = newFilterList;
+  function setFilter(newFilterList, type) {
+    filter.list = newFilterList;
+    filter.type = type;
   }
 
-  function getFilterList() {
-    return filterList;
+  function getFilter() {
+    return filter;
   }
 }

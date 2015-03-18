@@ -19,12 +19,11 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
 
   $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
     vm.eventList = data;
-    console.log(data);
   }, true);
 
-  $scope.$watch( function () { return eventService.getFilterList(); }, function (data) {
-    vm.filterList = data;
-    console.log(data);
+  $scope.$watch( function () { return eventService.getFilter(); }, function (data) {
+    vm.filterList = data.list;
+    console.log(data.list);
   }, true);
 
   $scope.map = eventsMapService.map;
@@ -46,7 +45,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     var huntersPromise = hunterService.getAllHunters();
     huntersPromise
       .then(function(data) {
-        eventService.setFilterList(data.data);
+        eventService.setFilter(data.data, "hunters");
       })
       .catch(function(err) {
         console.log('Error: ' + err);
@@ -57,11 +56,32 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     var tagsPromise = tagService.getAllTags();
     tagsPromise
       .then(function(data) {
-        eventService.setFilterList(data.data);
+        eventService.setFilter(data.data, "tags");
       })
       .catch(function(err) {
         console.log('Error: ' + err);
       });
   };
+
+  vm.filterEvents = function(filterId) {
+    // get events by either hunter or tag depending on current List
+    var filteredEventsPromise;
+    var listType = eventService.getFilter().type;
+    if(listType === "hunters") {
+      filteredEventsPromise = eventService.getEventsByHunter(filterId);
+    } else if(listType === "tags") {
+      filteredEventsPromise = eventService.getEventsByHunter(filterId);
+    } else {
+      console.log('Error: incorrect filter list')
+    }
+    filteredEventsPromise
+      .then(function(data) {
+        eventService.setCurrentEventList(data.data);
+        console.log(data);
+      })
+      .catch(function(err) {
+        console.log('Error: ' + err);
+      }); 
+  }
 
 }

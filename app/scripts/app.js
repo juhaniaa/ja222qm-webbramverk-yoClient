@@ -55,7 +55,8 @@ angular
       })
       .when('/account/signin', {
         templateUrl: 'views/accountSignIn.html',
-        controller: 'AccountSignInCtrl'
+        controller: 'AccountSignInCtrl',
+        controllerAs: 'hunter'
       })
       .when('/account/signout', {
         templateUrl: 'views/main.html',

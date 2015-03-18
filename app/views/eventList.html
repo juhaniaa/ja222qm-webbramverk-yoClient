@@ -11,7 +11,7 @@
 <h3>Filter list</h3>
 <ul>
   <li data-ng-repeat="filter in events.filterList">
-    {{ filter.name }}
+    <a data-ng-click="events.filterEvents({{ filter.id }})" ng-href="#">{{ filter.name }}</a>
   </li>
 </ul>
 
