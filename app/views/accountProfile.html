@@ -33,16 +33,43 @@
 	</fieldset>
 </form>
 
+
+
 <h3>Your latest events</h3>
 <ul>
   <li data-ng-repeat="event in hunter.eventList">
-    {{ event.description }}
+    <a ng-click="custom=!custom" ng-href="#">{{ event.description }}</a>
+    <span ng-show="custom">
+      <button data-ng-click="hunter.editEvent({{ event }})">Edit</button>
+      <button data-ng-click="hunter.removeEvent({{ event.id }})">Delete</button>
+      <ul>
+        <li>Position</li>
+        <ul>
+          <li>Latitude: {{ event.position.lat }}</li>
+          <li>Longitude: {{ event.position.lng }}</li>
+        </ul>
+        <li>Tags:</li>
+        <ul>
+          <li data-ng-repeat="tag in event.tags">
+            {{ tag.tag.name }}
+          </li>
+        </ul>
+      </ul>
+    </span>
   </li>
 </ul>
 
-<div class="row marketing">
-  <h4>Hunter form</h4>
-  <p>
-    Do you want to edit your settings?
-  </p>
-</div>
+
+<h3 class="text-center">Edit event</h3>
+<form data-ng-submit="hunter.changeEvent()" class="signin form-horizontal" autocomplete="off">
+  <fieldset>
+    <input type="hidden" name="changeId" ng-value="hunter.changeId" />
+    <div class="form-group">
+      <label for="changeDesc">Description</label>
+      <input type="text" id="changeDesc" name="changeDesc" class="form-control" data-ng-model="hunter.changeDesc">
+    </div>
+    <div class="text-center form-group">
+      <button type="submit" class="btn btn-primary">Save Event</button>
+    </div>
+  </fieldset>
+</form>

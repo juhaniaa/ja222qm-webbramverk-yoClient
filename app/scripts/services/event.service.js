@@ -18,9 +18,12 @@ function HaEventService(trophyApiService){
     getEventsByHunter       : getEventsByHunter,
     getEventsByQuery        : getEventsByQuery,
     addEvent                : addEvent,
+    editEvent               : editEvent,
+    removeEvent             : removeEvent,
     setCurrentEventList     : setCurrentEventList,
     getCurrentEventList     : getCurrentEventList,
     appendCurrentEventList  : appendCurrentEventList,
+    popCurrentEventList     : popCurrentEventList,
     setFilter               : setFilter,
     getFilter               : getFilter
   };
@@ -49,6 +52,14 @@ function HaEventService(trophyApiService){
     return trophyApiService.addSingle('events', eventObj, authToken)
   }
 
+  function editEvent(eventObj, authToken, eventId) {
+    return trophyApiService.editSingle('events', eventObj, authToken, eventId)
+  }
+
+  function removeEvent(eventId, authToken) {
+    return trophyApiService.removeSingle('events', eventId, authToken)
+  }
+
   function setCurrentEventList(newEventList) {
     eventList = newEventList
   }
@@ -58,7 +69,16 @@ function HaEventService(trophyApiService){
   }
 
   function appendCurrentEventList(newEvent) {
-    eventList.push(newEvent);
+    eventList.unshift(newEvent);
+  }
+
+  function popCurrentEventList(eventId) {
+    var log = [];
+    angular.forEach(eventList, function(value, key) {
+      if(value.id === eventId){
+        eventList.splice(key, 1);
+      }
+    }, log);
   }
 
   function setFilter(newFilterList, type) {

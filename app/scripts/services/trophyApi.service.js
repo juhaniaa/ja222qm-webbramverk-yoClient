@@ -17,7 +17,9 @@ function HaTrophyApiService($http){
     getCollBySingle : getCollBySingle,
     getCollByQuery  : getCollByQuery,
     postHunterAuth  : postHunterAuth,
-    addSingle       : addSingle
+    addSingle       : addSingle,
+    editSingle      : editSingle,
+    removeSingle    : removeSingle
   };
 
   // Single ex api/events/1
@@ -103,7 +105,7 @@ function HaTrophyApiService($http){
   // Post add new resource ex api/events
 
   function addSingle(resName, eventObj, authToken) { // ex resName: "events" eventObj: "{ "event": {"description": "I am still happy", "position_attributes": { "lat": 60.207225, "lng": 20.269015 }, "tags":  [  {"name": "yolo"},  {"name": "haha"}, {"name": "rekt"} ] } }"
-    // make post request with raw json object    
+    // make post request with raw json object
 
     var req = {
       method: 'Post',
@@ -120,4 +122,38 @@ function HaTrophyApiService($http){
 
     return $http(req);
   }
+
+  // Put edit resource ex api/events/1
+
+  function editSingle(resName, eventObj, authToken, resId) { // ex resName: "events" eventObj: "{ "event": {"description": "I am still happy", "position_attributes": { "lat": 60.207225, "lng": 20.269015 }, "tags":  [  {"name": "yolo"},  {"name": "haha"}, {"name": "rekt"} ] } }" authToken: 123xxx resId: 1
+    // make put request with raw json object
+
+    var req = {
+      method: 'Put',
+      url: apiUrl + '/events/' + resId,
+      headers: {
+        'Authorization': token,
+        'X-JWT': authToken
+      },
+      data: eventObj
+    };
+
+    return $http(req);
+  }
+
+  // Delete remove resource ex api/events/1
+
+  function removeSingle(resName, resId, authToken) { // ex resName: "events" resId: 1 authToken: 123xxx
+
+    var req = {
+      method: 'Delete',
+      url: apiUrl + '/events/' + resId,
+      headers: {
+        'Authorization': token,
+        'X-JWT': authToken
+      }
+    };
+
+    return $http(req);
+  }    
 }
