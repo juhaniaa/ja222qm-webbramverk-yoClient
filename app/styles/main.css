@@ -13,6 +13,18 @@ body {
   height: 400px;
 }
 
+#eventsDiv {
+  float:left;
+  width: 30%;
+}
+
+#mapDiv {
+  float:right;
+  width: 65%;
+  padding-top:25px;
+  padding-bottom:25px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

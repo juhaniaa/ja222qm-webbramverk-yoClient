@@ -16,17 +16,36 @@ ExploreCtrl.$inject = ['$scope', 'HaAuthService', 'HaEventService', 'HaEventsMap
 function ExploreCtrl($scope, authService, eventService, eventsMapService, hunterService, tagService) {
 
   var vm = this;
+  $scope.map = eventsMapService.eventMap;
+  $scope.eventMarkers = [];
 
   $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
     vm.eventList = data;
+    // add all these events as markers on the map
+
+    var markers = [];
+
+    var log = [];
+    angular.forEach(data, function(value, key) {
+
+      var eMarker = {
+        latitude: value.position.lat,
+        longitude: value.position.lng,
+        title: value.description
+      };
+
+      eMarker["id"] = key;
+
+      markers.push(eMarker);
+    }, log);
+
+    $scope.eventMarkers = markers;
+
   }, true);
 
   $scope.$watch( function () { return eventService.getFilter(); }, function (data) {
     vm.filterList = data.list;
-    console.log(data.list);
   }, true);
-
-  $scope.map = eventsMapService.map;
 
   // when user presses "Show all events"
   vm.allEvents = function() {
@@ -34,7 +53,6 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     eventsPromise
       .then(function(data) {
         eventService.setCurrentEventList(data.data);
-        console.log(data);
       })
       .catch(function(err) {
         console.log('Error: ' + err);
@@ -67,7 +85,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     // get events by either hunter or tag depending on current List
     var filteredEventsPromise;
     var listType = eventService.getFilter().type;
-    
+
     if(listType === "hunters") {
       filteredEventsPromise = eventService.getEventsByHunter(filterId);
     } else if(listType === "tags") {
@@ -85,13 +103,15 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       });
   }
 
+  vm.gotoEvent = function(position) {
+    eventsMapService.setCenter({ latitude: position.lat, longitude: position.lng });
+  }
+
   vm.queryEvents = function() {
-    console.log(vm.eventQuery);
     var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
     eventsPromise
       .then(function(data) {
         eventService.setCurrentEventList(data.data);
-        console.log(data);
       })
       .catch(function(err) {
         console.log('Error: ' + err);

@@ -7,7 +7,14 @@ angular
 
 
 function HaEventsMapService(){
+  var eventMap = { center: { latitude: 60.2, longitude: 20 }, zoom: 9 };
+
   return {
-    map: { center: { latitude: 60.2, longitude: 20 }, zoom: 9 }
+    eventMap      : eventMap,
+    setCenter     : setCenter
+  };
+
+  function setCenter(newCenter) {
+    eventMap.center = newCenter;
   }
 }

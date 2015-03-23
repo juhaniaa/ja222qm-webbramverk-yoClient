@@ -9,17 +9,24 @@
 
 
 <h3>Filter list</h3>
-<ul>
-  <li data-ng-repeat="filter in events.filterList">
-    <a data-ng-click="events.filterEvents({{ filter.id }})" ng-href="#">{{ filter.name }}</a>
-  </li>
-</ul>
 
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+<span data-ng-repeat="filter in events.filterList">
+  <a data-ng-click="events.filterEvents({{ filter.id }})" ng-href="#">{{ filter.name }}</a>
+</span>
 
-<h3>Events</h3>
-<ul>
-  <li data-ng-repeat="event in events.eventList">
-    {{ event.description }}
-  </li>
-</ul>
+
+<div id="eventsDiv">
+  <h3>Events</h3>
+  <ul>
+    <li data-ng-repeat="event in events.eventList">
+      <a data-ng-click="events.gotoEvent({{ event.position }})" ng-href="#">{{ event.description }}</a>
+    </li>
+  </ul>
+</div>
+
+<div id="mapDiv">
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+    <ui-gmap-markers models="eventMarkers" coords="'self'">
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
+</div>

@@ -27,7 +27,9 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
     vm.name = authService.userName(); // this should be retrieved from the current user
     var hunterId = authService.userId();
 
-    $scope.map = eventsMapService.map;
+    
+
+    $scope.map = eventsMapService.eventMap;
 
     var eventsPromise = eventService.getEventsByHunter(hunterId);
     eventsPromise
