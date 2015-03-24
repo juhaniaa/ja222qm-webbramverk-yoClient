@@ -18,22 +18,20 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
   var vm = this;
   $scope.eventMarkers = [];
 
-
-
+  // check for changes on map
   $scope.$watch( function () { return eventsMapService.getMap(); }, function (data) {
     $scope.map = data;
   }, true);
 
+  // check for changes in eventlist
   $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
-    console.log(data);
+
     if(data != null && data.length > 0) {
-      console.log("not nuul");
-      console.log(data.length);
+
       vm.eventList = data;
+
       // add all these events as markers on the map
-
       var markers = [];
-
       var log = [];
       angular.forEach(data, function(value, key) {
 
@@ -50,12 +48,12 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
 
       $scope.eventMarkers = markers;
     } else {
-      console.log("emppty");
       vm.eventList = null;
     }
 
   }, true);
 
+  // check for changes in filter
   $scope.$watch( function () { return eventService.getFilter(); }, function (data) {
     vm.filterList = data.list;
     vm.eventsHeader = data.name;
@@ -74,6 +72,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       });
   };
 
+  // get all hunters to filter by
   vm.allHunters = function() {
     var huntersPromise = hunterService.getAllHunters();
     huntersPromise
@@ -85,6 +84,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       });
   };
 
+  // get all tags to filter by
   vm.allTags = function() {
     var tagsPromise = tagService.getAllTags();
     tagsPromise
@@ -96,10 +96,12 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       });
   };
 
+  // center map to specific event
   vm.gotoEvent = function(position) {
     eventsMapService.setCenter({ latitude: position.lat, longitude: position.lng });
   };
 
+  // get events by user search words
   vm.queryEvents = function() {
     if(vm.eventQuery) {
       var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
@@ -114,5 +116,6 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     }
   };
 
+  // get all events on page-load
   vm.allEvents();
 }

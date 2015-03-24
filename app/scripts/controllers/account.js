@@ -20,17 +20,17 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
   if(!authService.logged()) {
     $location.path('/');
   } else {
+
+    // check for updates on eventList
     $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
       vm.eventList = data;
     }, true);
 
-    vm.name = authService.userName(); // this should be retrieved from the current user
+    vm.name = authService.userName();
     var hunterId = authService.userId();
-
-
-
     $scope.map = eventsMapService.eventMap;
 
+    // get events by logged in hunter
     var eventsPromise = eventService.getEventsByHunter(hunterId);
     eventsPromise
       .then(function(data) {
@@ -61,16 +61,15 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
         }
       };
 
+    // try to save event with eventservice
     var savePromise = eventService.addEvent(eventObj, authService.userToken());
     savePromise
       .then(function(data) {
-        // show some nice message about added event
         eventService.appendCurrentEventList(data.data);
       })
       .catch(function(err) {
         console.log('Error: ' + err.data);
       });
-
   }
 
   // delete chosen event
@@ -81,8 +80,6 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
 
         // remove the old event from the list
         eventService.popCurrentEventList(eventId);
-
-        // show nice message that event was removed
       })
       .catch(function(err) {
         console.log('Error: ' + err.data);
@@ -91,7 +88,6 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
 
   // let user edit chosen event
   vm.editEvent = function(eventObj) {
-
     vm.changeId = eventObj.id;
     vm.changeDesc = eventObj.description;
   }
@@ -119,6 +115,5 @@ function AccountCtrl($scope, authService, eventService, eventsMapService, $locat
       .catch(function(err) {
         console.log('Error: ' + err.data);
       });
-
   }
 }

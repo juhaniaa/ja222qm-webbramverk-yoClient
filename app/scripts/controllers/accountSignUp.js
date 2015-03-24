@@ -26,6 +26,7 @@ function AccountSignUpCtrl($scope, authService, $location) {
       .then(function(data) {
         // If successfull
         if(data.data !== undefined) {
+          // redirect to signin page
           $location.path('/account/signin');
         }
       }).catch(function(err) {

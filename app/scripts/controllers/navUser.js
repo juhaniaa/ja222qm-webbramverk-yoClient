@@ -15,7 +15,6 @@ NavUserCtrl.$inject = ['$scope', 'HaAuthService'];
 
 function NavUserCtrl($scope, authService) {
 
-
   var vm = this;
 
   // watch logged and username

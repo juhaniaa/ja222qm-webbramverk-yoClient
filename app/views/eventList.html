@@ -23,9 +23,21 @@
   <h3>{{ events.eventsHeader }}</h3>
   <ul class="buttonLinks">
     <li data-ng-repeat="event in events.eventList">
-      <button class="link" type="button" data-ng-click="events.gotoEvent({{ event.position }})">{{ event.description }}</button>
+      <button class="link" ng-click="custom=!custom">{{ event.description }}</button>
+      <span ng-show="custom">
+        <ul>
+          <li>Hunter: {{ event.hunter.name }}</li>
+          <li>Position: <button class="btn btn-xs btn-success" data-ng-click="events.gotoEvent({{ event.position }})">Show on map</button></li>
+          <li>Tags:</li>
+          <ul>
+            <li data-ng-repeat="tag in event.tags">
+              {{ tag.tag.name }}
+            </li>
+          </ul>
+        </ul>
+      </span>
     </li>
-    <li data-ng-hide="events.eventList">No events: choose filter</li>
+    <li data-ng-hide="events.eventList">No events found</li>
   </ul>
 </div>
 

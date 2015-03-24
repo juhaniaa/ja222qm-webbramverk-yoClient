@@ -25,9 +25,6 @@ function haButtonFilter() {
         var listType = eventService.getFilter().type;
         var setFilter;
 
-        console.log(filterName);
-        console.log(filterId);
-
         if(listType === "hunters") {
           filteredEventsPromise = eventService.getEventsByHunter(filterId);
           setFilter = "Events by hunter: " + filterName;
@@ -39,18 +36,13 @@ function haButtonFilter() {
         }
         filteredEventsPromise
           .then(function(data) {
+            // change eventlist to the response from service
             eventService.setCurrentEventList(data.data, setFilter);
-            console.log(data);
           })
           .catch(function(err) {
             console.log('Error: ' + err);
           });
-
       }
-      // $scope.doIt = function(lat, lng) {
-      //   eventsMapService.setCenter({ latitude: parseFloat(lat), longitude: parseFloat(lng)});
-      //   $scope.map = eventsMapService.getMap();
-      // }
     }]
   }
 }
