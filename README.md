@@ -5,19 +5,19 @@
 ## Getting started
 
 1. Clone the repository
-2. Node and npm https://nodejs.org/
-3. Bower http://bower.io/
-4. Grunt http://gruntjs.com/
-5. Api running in the background: https://github.com/juhaniaa/ja222qm-webbramverk-api
+2. Requires Node and npm https://nodejs.org/
+3. Requires Bower http://bower.io/
+4. Requires Grunt http://gruntjs.com/
+5. Requires Api running in the background: https://github.com/juhaniaa/ja222qm-webbramverk-api
 6. Locate the root folder in you command line tool
 7. run "bower install"
 8. run "grunt serve"
 
 ## Alternative Setup
 
-1. Step 1 above
+1. Do step 1 above
 2. Skip steps 2-4 above and instead start up an easyPhp server on the "dist" folder found in root of project
-3. Step 5 above
+3. Do step 5 above
 4. Navigate to your running easyPhp server in browser
 
 ## These are the changes I made to the api during development
