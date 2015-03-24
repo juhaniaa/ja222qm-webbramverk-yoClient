@@ -13,6 +13,7 @@ HaAuthService.$inject = ['HaTrophyApiService'];
 function HaAuthService(trophyApiService){
   var user = { name: null, token: null, id: null, logged: false };
   return {
+    signUp  : signUp,
     signIn  : signIn,
     signOut : signOut,
     user    : user,
@@ -21,6 +22,10 @@ function HaAuthService(trophyApiService){
     userToken : userToken,
     userId    : userId
   };
+
+  function signUp(name, email, password, passwordConfirmation) {
+    return trophyApiService.postNewHunter(name, email, password, passwordConfirmation);
+  }
 
   function signIn(email, password) {
     return trophyApiService.postHunterAuth(email, password);

@@ -16,6 +16,7 @@ function HaTrophyApiService($http){
     getCollection   : getCollection,
     getCollBySingle : getCollBySingle,
     getCollByQuery  : getCollByQuery,
+    postNewHunter   : postNewHunter,
     postHunterAuth  : postHunterAuth,
     addSingle       : addSingle,
     editSingle      : editSingle,
@@ -31,9 +32,6 @@ function HaTrophyApiService($http){
       url: apiUrl + resName + '/' + resId,
       headers: {
         'Authorization': token,
-      },
-      params: {
-        'limit': '20'
       }
     };
     return $http(req);
@@ -47,9 +45,6 @@ function HaTrophyApiService($http){
       url: apiUrl + resName,
       headers: {
         'Authorization': token,
-      },
-      params: {
-        'limit': '20'
       }
     };
     return $http(req);
@@ -63,9 +58,6 @@ function HaTrophyApiService($http){
       url: apiUrl + filterName + '/' + filterId + '/' + resName,
       headers: {
         'Authorization': token,
-      },
-      params: {
-        'limit': '20'
       }
     };
     return $http(req);
@@ -79,11 +71,29 @@ function HaTrophyApiService($http){
       url: apiUrl + resName + '/query?query=' + query,
       headers: {
         'Authorization': token,
-      },
-      params: {
-        'limit': '20'
       }
     };
+    return $http(req);
+  }
+
+
+  // Post to create new Hunter account api/hunters
+
+  function postNewHunter(name, email, password, passwordConfirmation) { // ex name: "hunter7" email:"hunter7@test.se" password: "asd123" passwordConfirmation: "asd123"
+    var req = {
+      method: 'Post',
+      url: apiUrl + '/hunters',
+      headers: {
+        'Authorization': token,
+      },
+      params: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'password_confirmation': passwordConfirmation
+      }
+    };
+
     return $http(req);
   }
 
@@ -113,9 +123,6 @@ function HaTrophyApiService($http){
       headers: {
         'Authorization': token,
         'X-JWT': authToken
-      },
-      params: {
-        'limit': '20'
       },
       data: eventObj
     };
@@ -155,5 +162,5 @@ function HaTrophyApiService($http){
     };
 
     return $http(req);
-  }    
+  }
 }

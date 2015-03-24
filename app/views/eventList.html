@@ -12,7 +12,7 @@
   </span>
 </div>
 
-<h3>Filter list</h3>
+<h3>{{ events.filtersHeader }}</h3>
 <div class="buttonLinks">
 <span data-ng-repeat="filter in events.filterList">
   <ha-button-filter data-item-id="{{ filter.id }}" data-item-name="{{ filter.name }}"></ha-button-filter>
@@ -25,6 +25,7 @@
     <li data-ng-repeat="event in events.eventList">
       <button class="link" type="button" data-ng-click="events.gotoEvent({{ event.position }})">{{ event.description }}</button>
     </li>
+    <li data-ng-hide="events.eventList">No events: choose filter</li>
   </ul>
 </div>
 

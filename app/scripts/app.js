@@ -51,7 +51,8 @@ angular
       })
       .when('/account/signup', {
         templateUrl: 'views/accountSignUp.html',
-        controller: 'AccountSignUpCtrl'
+        controller: 'AccountSignUpCtrl',
+        controllerAs: 'hunter'
       })
       .when('/account/signin', {
         templateUrl: 'views/accountSignIn.html',

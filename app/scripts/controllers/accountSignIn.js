@@ -16,11 +16,6 @@ AccountSignInCtrl.$inject = ['$scope', 'HaAuthService', '$location'];
 function AccountSignInCtrl($scope, authService, $location) {
 
   var vm = this;
-  var email = "hunter1@test.se";
-  var password = "asd123";
-
-  // vm.mail = "";
-  // vm.password = "";
 
   // when user presses "Sign In"
   vm.signIn = function(){

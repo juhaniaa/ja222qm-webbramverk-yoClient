@@ -18,37 +18,48 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
   var vm = this;
   $scope.eventMarkers = [];
 
+
+
   $scope.$watch( function () { return eventsMapService.getMap(); }, function (data) {
     $scope.map = data;
   }, true);
 
   $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
-    vm.eventList = data;
-    // add all these events as markers on the map
+    console.log(data);
+    if(data != null && data.length > 0) {
+      console.log("not nuul");
+      console.log(data.length);
+      vm.eventList = data;
+      // add all these events as markers on the map
 
-    var markers = [];
+      var markers = [];
 
-    var log = [];
-    angular.forEach(data, function(value, key) {
+      var log = [];
+      angular.forEach(data, function(value, key) {
 
-      var eMarker = {
-        latitude: value.position.lat,
-        longitude: value.position.lng,
-        title: value.description
-      };
+        var eMarker = {
+          latitude: value.position.lat,
+          longitude: value.position.lng,
+          title: value.description
+        };
 
-      eMarker["id"] = key;
+        eMarker["id"] = key;
 
-      markers.push(eMarker);
-    }, log);
+        markers.push(eMarker);
+      }, log);
 
-    $scope.eventMarkers = markers;
+      $scope.eventMarkers = markers;
+    } else {
+      console.log("emppty");
+      vm.eventList = null;
+    }
 
   }, true);
 
   $scope.$watch( function () { return eventService.getFilter(); }, function (data) {
     vm.filterList = data.list;
     vm.eventsHeader = data.name;
+    vm.filtersHeader = data.type;
   }, true);
 
   // when user presses "Show all events"
@@ -90,14 +101,18 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
   };
 
   vm.queryEvents = function() {
-    var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
-    eventsPromise
-      .then(function(data) {
-        eventService.setCurrentEventList(data.data, "Events with: '" + vm.eventQuery + "'");
-        vm.eventsHeader = "Events with '" + vm.eventQuery + "'";
-      })
-      .catch(function(err) {
-        console.log('Error: ' + err);
-      });
+    if(vm.eventQuery) {
+      var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
+      eventsPromise
+        .then(function(data) {
+          eventService.setCurrentEventList(data.data, "Events with: '" + vm.eventQuery + "'");
+          vm.eventsHeader = "Events with '" + vm.eventQuery + "'";
+        })
+        .catch(function(err) {
+          console.log('Error: ' + err);
+        });
+    }
   };
+
+  vm.allEvents();
 }
