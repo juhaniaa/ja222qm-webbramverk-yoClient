@@ -13,6 +13,10 @@ body {
   height: 400px;
 }
 
+.trophyTags{
+  padding-bottom:20px;
+}
+
 #eventsDiv {
   float:left;
   width: 30%;

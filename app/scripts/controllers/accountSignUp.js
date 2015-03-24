@@ -19,7 +19,6 @@ function AccountSignUpCtrl($scope, authService, $location) {
 
   // when user presses "Sign Up"
   vm.signUp = function(){
-    console.log("attempting to sign up");
 
     var userPromise = authService.signUp(vm.name, vm.mail, vm.pass, vm.confirm);
     userPromise

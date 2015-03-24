@@ -19,7 +19,6 @@ function HaEventsMapService(){
   }
 
   function setCenter(newCenter) {
-    console.log(eventMap);
     eventMap.center = newCenter;
   }
 }
