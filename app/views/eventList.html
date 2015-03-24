@@ -1,25 +1,29 @@
 
-<ul>
-  <button data-ng-click="events.allEvents()">Get all Events</button>
-  <button data-ng-click="events.allHunters()">Sort by Hunter</button>
-  <button data-ng-click="events.allTags()">Sort by Tag</button>
-  <input type="text" data-ng-model="events.eventQuery" />
-  <button data-ng-click="events.queryEvents()">Search by description</button>
-</ul>
-
+<div class="btn-group-sm" role="group">
+  <button class="btn btn-info" data-ng-click="events.allEvents()">Get all Events</button>
+  <button class="btn btn-info" data-ng-click="events.allHunters()">Sort by Hunter</button>
+  <button class="btn btn-info" data-ng-click="events.allTags()">Sort by Tag</button>
+</div>
+</br>
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="search..." data-ng-model="events.eventQuery" />
+  <span class="input-group-btn">
+      <button class="btn btn-default" type="button" data-ng-click="events.queryEvents()">Search!</button>
+  </span>
+</div>
 
 <h3>Filter list</h3>
-
+<div class="buttonLinks">
 <span data-ng-repeat="filter in events.filterList">
-  <a data-ng-click="events.filterEvents({{ filter.id }})" ng-href="#">{{ filter.name }}</a>
+  <ha-button-filter data-item-id="{{ filter.id }}" data-item-name="{{ filter.name }}"></ha-button-filter>
 </span>
-
+</div>
 
 <div id="eventsDiv">
-  <h3>Events</h3>
-  <ul>
+  <h3>{{ events.eventsHeader }}</h3>
+  <ul class="buttonLinks">
     <li data-ng-repeat="event in events.eventList">
-      <a data-ng-click="events.gotoEvent({{ event.position }})" ng-href="#">{{ event.description }}</a>
+      <button class="link" type="button" data-ng-click="events.gotoEvent({{ event.position }})">{{ event.description }}</button>
     </li>
   </ul>
 </div>

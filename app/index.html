@@ -5,7 +5,8 @@
     <title>Hunter App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <base href="/">
+    <!-- <base href="/"> -->
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -32,22 +33,21 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">hunterApp</a>
+            <a class="navbar-brand" href="#/">hunterApp</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavUserCtrl as user">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a ng-href="/about">About</a></li>
-              <li><a ng-href="/explore">Explore</a></li>
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a ng-href="#/explore">Explore</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" data-ng-hide="user.logged">
-              <li><a ng-href="/account/signup">Sign Up</a></li>
-              <li><a ng-href="/account/signin">Sign In</a></li>
+              <li><a ng-href="#/account/signup">Sign Up</a></li>
+              <li><a ng-href="#/account/signin">Sign In</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" data-ng-show="user.logged">
-              <li><a ng-href="/account/profile">{{ user.name }}</a></li>
-              <li><a ng-href="/account/signout">Log out</a></li>
+              <li><a ng-href="#/account/profile">{{ user.name }}</a></li>
+              <li><a ng-href="#/account/signout">Log out</a></li>
             </ul>
           </div>
 
@@ -96,7 +96,6 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/navUser.js"></script>
         <script src="scripts/controllers/explore.js"></script>
         <script src="scripts/controllers/account.js"></script>
@@ -109,6 +108,7 @@
         <script src="scripts/services/tag.service.js"></script>
         <script src="scripts/services/hunter.service.js"></script>
         <script src="scripts/services/eventsMap.service.js"></script>
+        <script src="scripts/directives/buttonFilter.js"></script>
         <!-- endbuild -->
 </body>
 </html>

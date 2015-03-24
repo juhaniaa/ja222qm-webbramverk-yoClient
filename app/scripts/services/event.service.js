@@ -9,7 +9,7 @@ HaEventService.$inject = ['HaTrophyApiService'];
 
 function HaEventService(trophyApiService){
   var eventList = null;
-  var filter = { list: null, type: null };
+  var filter = { list: null, type: null, name: null };
 
   return {
     getEvent                : getEvent,
@@ -60,8 +60,9 @@ function HaEventService(trophyApiService){
     return trophyApiService.removeSingle('events', eventId, authToken)
   }
 
-  function setCurrentEventList(newEventList) {
-    eventList = newEventList
+  function setCurrentEventList(newEventList, filteredBy) {
+    eventList = newEventList;
+    filter.name = filteredBy;
   }
 
   function getCurrentEventList() {

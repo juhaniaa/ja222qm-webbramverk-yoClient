@@ -16,6 +16,4 @@ MainCtrl.$inject = ['$scope', 'HaAuthService'];
 function MainCtrl($scope, authService) {
 
   var vm = this;
-  vm.name = authService.userName();
-  vm.logged = authService.logged();
 }

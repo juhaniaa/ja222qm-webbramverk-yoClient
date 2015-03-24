@@ -10,11 +10,16 @@ function HaEventsMapService(){
   var eventMap = { center: { latitude: 60.2, longitude: 20 }, zoom: 9 };
 
   return {
-    eventMap      : eventMap,
-    setCenter     : setCenter
+    getMap      : getMap,
+    setCenter   : setCenter
   };
 
+  function getMap() {
+    return eventMap;
+  }
+
   function setCenter(newCenter) {
+    console.log(eventMap);
     eventMap.center = newCenter;
   }
 }

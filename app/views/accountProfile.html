@@ -1,9 +1,7 @@
 
-<div class="jumbotron">
-  <p class="lead">
-    Hello mr {{ hunter.name }}!
-  </p>
-</div>
+
+<h1>Hello {{ hunter.name }}!</h1>
+
 
 <h3 class="text-center">Add new event</h3>
 <form data-ng-submit="hunter.addEvent()" class="signin form-horizontal" autocomplete="off">
@@ -36,12 +34,14 @@
 
 
 <h3>Your latest events</h3>
-<ul>
+<ul class="buttonLinks">
   <li data-ng-repeat="event in hunter.eventList">
-    <a ng-click="custom=!custom" ng-href="#">{{ event.description }}</a>
+    <button class="link" ng-click="custom=!custom">{{ event.description }}</button>
     <span ng-show="custom">
-      <button data-ng-click="hunter.editEvent({{ event }})">Edit</button>
-      <button data-ng-click="hunter.removeEvent({{ event.id }})">Delete</button>
+      <div class="btn-group-sm" role="group" aria-label="...">
+        <button class="btn btn-warning" data-ng-click="hunter.editEvent({{ event }})">Edit</button>
+        <button class="btn btn-danger" data-ng-click="hunter.removeEvent({{ event.id }})">Delete</button>
+      </div>
       <ul>
         <li>Position</li>
         <ul>

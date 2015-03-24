@@ -67,13 +67,9 @@ angular
         controller: 'AccountCtrl',
         controllerAs: 'hunter'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
 
-      $locationProvider.html5Mode(true);
+      // $locationProvider.html5Mode(true);
   });

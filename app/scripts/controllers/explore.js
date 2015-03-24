@@ -16,8 +16,11 @@ ExploreCtrl.$inject = ['$scope', 'HaAuthService', 'HaEventService', 'HaEventsMap
 function ExploreCtrl($scope, authService, eventService, eventsMapService, hunterService, tagService) {
 
   var vm = this;
-  $scope.map = eventsMapService.eventMap;
   $scope.eventMarkers = [];
+
+  $scope.$watch( function () { return eventsMapService.getMap(); }, function (data) {
+    $scope.map = data;
+  }, true);
 
   $scope.$watch( function () { return eventService.getCurrentEventList(); }, function (data) {
     vm.eventList = data;
@@ -45,6 +48,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
 
   $scope.$watch( function () { return eventService.getFilter(); }, function (data) {
     vm.filterList = data.list;
+    vm.eventsHeader = data.name;
   }, true);
 
   // when user presses "Show all events"
@@ -52,7 +56,7 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
     var eventsPromise = eventService.getAllEvents();
     eventsPromise
       .then(function(data) {
-        eventService.setCurrentEventList(data.data);
+        eventService.setCurrentEventList(data.data, "All events");
       })
       .catch(function(err) {
         console.log('Error: ' + err);
@@ -81,40 +85,19 @@ function ExploreCtrl($scope, authService, eventService, eventsMapService, hunter
       });
   };
 
-  vm.filterEvents = function(filterId) {
-    // get events by either hunter or tag depending on current List
-    var filteredEventsPromise;
-    var listType = eventService.getFilter().type;
-
-    if(listType === "hunters") {
-      filteredEventsPromise = eventService.getEventsByHunter(filterId);
-    } else if(listType === "tags") {
-      filteredEventsPromise = eventService.getEventsByTag(filterId);
-    } else {
-      console.log('Error: incorrect filter list')
-    }
-    filteredEventsPromise
-      .then(function(data) {
-        eventService.setCurrentEventList(data.data);
-        console.log(data);
-      })
-      .catch(function(err) {
-        console.log('Error: ' + err);
-      });
-  }
-
   vm.gotoEvent = function(position) {
     eventsMapService.setCenter({ latitude: position.lat, longitude: position.lng });
-  }
+  };
 
   vm.queryEvents = function() {
     var eventsPromise = eventService.getEventsByQuery(vm.eventQuery);
     eventsPromise
       .then(function(data) {
-        eventService.setCurrentEventList(data.data);
+        eventService.setCurrentEventList(data.data, "Events with: '" + vm.eventQuery + "'");
+        vm.eventsHeader = "Events with '" + vm.eventQuery + "'";
       })
       .catch(function(err) {
         console.log('Error: ' + err);
       });
-  }
+  };
 }
